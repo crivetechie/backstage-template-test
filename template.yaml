@@ -3,7 +3,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: demo-template
-  title: Just a demo template 
+  title: Just a demo template v0.0.1
   description: Creates a simple repo with a README.md file
   tags:
     - demo
@@ -59,9 +59,10 @@ spec:
       name: Publish
       action: publish:github
       input:
-        allowedHosts: ["github.com"]
-        description: This is ${{ parameters.name }}
+        allowedHosts: ['github.com']
+        description: ${{ parameters.description }}
         repoUrl: ${{ parameters.repoUrl }}
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
 
   output:
     links:
