@@ -1,3 +1,3 @@
-# ${{values.title}}
+# ${{values.name}}
 
 ${{ values.description }}
