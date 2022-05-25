@@ -3,7 +3,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: demo-template
-  title: Just a demo template v0.0.2
+  title: Just a demo template v0.0.3
   description: Creates a simple repo with a README.md file
   tags:
     - demo
@@ -60,7 +60,7 @@ spec:
       action: fetch:plain
       input:
         targetPath: ./docs
-        url: https://github.com/getndazn/dx-repo-template/tree/main/docs
+        url: https://github.com/crivetechie/docs-template/tree/main/docs
 
     - id: publish
       name: Publish
