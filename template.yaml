@@ -3,7 +3,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: demo-template
-  title: Just a demo template v0.0.1
+  title: Just a demo template v0.0.2
   description: Creates a simple repo with a README.md file
   tags:
     - demo
@@ -46,14 +46,21 @@ spec:
                   - workflow
 
   steps:
-    - id: fetch
-      name: Template Docs Skeleton
+    - id: fetch-base
+      name: Fect Base
       action: fetch:template
       input:
         url: ./skeleton
         values:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
+
+    - id: fetch-docs
+      name: Fetch Docs
+      action: fetch:plain
+      input:
+        targetPath: ./docs
+        url: https://github.com/getndazn/dx-repo-template/tree/main/docs
 
     - id: publish
       name: Publish
