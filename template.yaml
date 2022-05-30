@@ -70,6 +70,8 @@ spec:
         description: ${{ parameters.description }}
         repoUrl: ${{ parameters.repoUrl }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}        
 
   output:
     links:
