@@ -1,3 +1,3 @@
-# ${{ values.name | capitalize }}
+# ${{ values.name | upper }}
 
 ${{ values.description }}
