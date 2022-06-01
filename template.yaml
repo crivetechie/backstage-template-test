@@ -14,20 +14,62 @@ spec:
   parameters:
     - title: Fill in the details
       required:
-        - name
+        - title
         - description
       properties:
-      ***
+        title: 
+          title: Title
+          type: string
+          description: Title of the README.md
+          ui:autofocus: true
+          ui:options:
+            rows: 1
+        description: 
+          title: Description
+          type: string
+          description: Description of the README.md
+          ui:options:
+            rows: 2
 
     - title: Choose a location
       required:
         - repoUrl
       properties:
-      ***
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            # Here's the option you can pass to the RepoUrlPicker
+            requestUserCredentials:
+              secretsKey: USER_OAUTH_TOKEN
+              additionalScopes:
+                github:
+                  - workflow
+            allowedHosts:
+              - github.com
       
   steps:
-  ***       
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          title: ${{ parameters.title }}
+          description: ${{ parameters.description }}
 
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: ${{ parameters.description }}
+        repoUrl: ${{ parameters.repoUrl }}
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}        
+         
   output:
     links:
       - title: Repository
