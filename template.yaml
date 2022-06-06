@@ -7,8 +7,6 @@ metadata:
   description: Creates a simple repo with a README.md file
   tags:
     - demo
-    - awesome
-    - mkdocs
 spec:
   owner: crivetechie
   type: service
@@ -19,59 +17,16 @@ spec:
         - name
         - description
       properties:
-        name:
-          title: Name
-          type: string
-          description: Name of the entity
-          ui:autofocus: true
-        description:
-          title: Description
-          type: string
-          description: Description of the entity
+      ***
+
     - title: Choose a location
       required:
         - repoUrl
       properties:
-        repoUrl:
-          title: Repository Location
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - github.com
-            requestUserCredentials:
-              secretsKey: USER_OAUTH_TOKEN
-              additionalScopes:
-                github:
-                  - workflow
-
+      ***
+      
   steps:
-    - id: fetch-base
-      name: Fect Base
-      action: fetch:template
-      input:
-        url: ./skeleton
-        values:
-          name: ${{ parameters.name }}
-          description: ${{ parameters.description }}
-
-    - id: fetch-docs
-      name: Fetch Docs
-      action: fetch:plain
-      input:
-        targetPath: ./docs
-        url: https://github.com/crivetechie/docs-template/tree/main/docs
-
-    - id: publish
-      name: Publish
-      action: publish:github
-      input:
-        allowedHosts: ['github.com']
-        description: ${{ parameters.description }}
-        repoUrl: ${{ parameters.repoUrl }}
-        token: ${{ secrets.USER_OAUTH_TOKEN }}
-        gitAuthorName: ${{ user.entity.metadata.name }}
-        gitAuthorEmail: ${{ user.entity.spec.profile.email }}        
+  ***       
 
   output:
     links:
