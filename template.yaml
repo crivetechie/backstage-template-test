@@ -3,7 +3,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: demo-template
-  title: Just a demo template v0.0.3
+  title: Just a demo template v0.1.0
   description: Creates a simple repo with a README.md file
   tags:
     - demo
